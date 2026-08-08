@@ -1,6 +1,9 @@
-[package]
+[workspace]
+members = ["crates/*"]
+resolver = "3"
+
+[workspace.package]
 # Identity
-name = "levianaut"
 version = "0.0.1-dev"
 # Toolchain
 edition = "2024"
@@ -13,4 +16,6 @@ repository = "https://github.com/levianaut/levianaut"
 # Legal
 license = "AGPL-3.0-or-later"
 
-[dependencies]
+[workspace.dependencies]
+axum = "0.8"
+tokio = "1"
