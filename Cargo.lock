@@ -200,6 +200,7 @@ version = "0.0.1-dev"
 dependencies = [
  "axum",
  "tokio",
+ "tower",
 ]
 
 [[package]]

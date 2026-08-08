@@ -1,6 +1,6 @@
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    let app = axum::Router::new();
+    let app = levianaut_server::router();
 
     let address = "127.0.0.1:8096";
     let listener = tokio::net::TcpListener::bind(address).await?;
