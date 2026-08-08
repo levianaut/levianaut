@@ -1,0 +1,16 @@
+[package]
+# Identity
+name = "levianaut"
+version = "0.0.1-dev"
+# Toolchain
+edition = "2024"
+rust-version = "1.97"
+# Project
+description = "A free, open-source and modern video media server"
+readme = "README.md"
+homepage = "https://levianaut.org"
+repository = "https://github.com/levianaut/levianaut"
+# Legal
+license = "AGPL-3.0-or-later"
+
+[dependencies]
