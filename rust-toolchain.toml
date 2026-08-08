@@ -1,0 +1,5 @@
+[toolchain]
+channel = "1.97.1"
+# basically default without docs
+profile = "minimal"
+components = ["clippy", "rustfmt"]
