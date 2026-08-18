@@ -17,6 +17,9 @@ repository = "https://github.com/levianaut/levianaut"
 license = "AGPL-3.0-or-later"
 
 [workspace.dependencies]
+levianaut-server = { path = "crates/levianaut-server" }
+
 axum = "0.8"
+clap = "4"
 tokio = "1"
 tower = "0.5"
