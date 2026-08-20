@@ -4,7 +4,7 @@ resolver = "3"
 
 [workspace.package]
 # Identity
-version = "0.0.1-dev"
+version = "0.0.1"
 # Toolchain
 edition = "2024"
 rust-version = "1.97"

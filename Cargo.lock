@@ -314,7 +314,7 @@ checksum = "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
 
 [[package]]
 name = "levianaut"
-version = "0.0.1-dev"
+version = "0.0.1"
 dependencies = [
  "clap",
  "levianaut-server",
@@ -323,7 +323,7 @@ dependencies = [
 
 [[package]]
 name = "levianaut-server"
-version = "0.0.1-dev"
+version = "0.0.1"
 dependencies = [
  "axum",
  "tokio",
