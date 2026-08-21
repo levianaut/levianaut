@@ -1,3 +1,5 @@
+use std::net::SocketAddr;
+
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -12,14 +14,14 @@ struct Cli {
 enum Commands {
     Server {
         #[arg(long, default_value = "127.0.0.1:8096")]
-        addr: String,
+        addr: SocketAddr,
     },
 }
 
 pub async fn run() -> std::io::Result<()> {
     let args = Cli::parse();
     match args.command {
-        Commands::Server { addr } => levianaut_server::run(&addr).await?,
+        Commands::Server { addr } => levianaut_server::run(addr).await?,
     }
 
     Ok(())
