@@ -18,7 +18,7 @@ enum Commands {
     },
 }
 
-pub async fn run() -> std::io::Result<()> {
+pub async fn run() -> anyhow::Result<()> {
     let args = Cli::parse();
     match args.command {
         Commands::Server { addr } => levianaut_server::run(addr).await?,

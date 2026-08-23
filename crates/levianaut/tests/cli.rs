@@ -1,3 +1,4 @@
+use std::net::TcpListener;
 use std::process::{Command, Output};
 
 fn levianaut(args: &[&str]) -> Output {
@@ -45,6 +46,22 @@ fn server_help_displays_subcommand_help() {
     let stdout = output_text(&output);
     assert!(stdout.contains("Usage: levianaut server [OPTIONS]"));
     assert!(stdout.contains("--addr"));
+}
+
+#[test]
+fn server_reports_unusable_address_with_its_cause() {
+    // Occupy a port so that the server is guaranteed to fail to bind to it.
+    let occupied = TcpListener::bind("127.0.0.1:0").expect("a free port should be available");
+    let addr = occupied
+        .local_addr()
+        .expect("listener should have an address");
+
+    let output = levianaut(&["server", "--addr", &addr.to_string()]);
+
+    assert!(!output.status.success());
+    let stderr = std::str::from_utf8(&output.stderr).expect("stderr should be UTF-8");
+    assert!(stderr.contains(&format!("levianaut: could not listen on {addr}")));
+    assert!(stderr.contains("caused by:"));
 }
 
 #[test]

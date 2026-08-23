@@ -11,6 +11,7 @@ license.workspace = true
 
 [dependencies]
 axum.workspace = true
+thiserror.workspace = true
 tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal"] }
 
 [dev-dependencies]

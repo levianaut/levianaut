@@ -12,5 +12,6 @@ license.workspace = true
 [dependencies]
 levianaut-server.workspace = true
 
+anyhow.workspace = true
 clap = { workspace = true, features = ["derive"] }
 tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread"] }

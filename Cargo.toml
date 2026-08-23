@@ -19,8 +19,10 @@ license = "AGPL-3.0-or-later"
 [workspace.dependencies]
 levianaut-server = { path = "crates/levianaut-server" }
 
+anyhow = "1"
 axum = "0.8"
 clap = "4"
+thiserror = "2"
 tokio = "1"
 tower = "0.5"
 
