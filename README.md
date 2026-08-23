@@ -7,6 +7,16 @@ A free, open-source and modern video media server.
 > project structure and other things may change without notice.
 > It is not currently intended for usage except for development and testing.
 
+## Platform support
+
+Levianaut is built for Unix-like platforms and relies on them directly.
+**Windows is not supported, and supporting it is not planned for the
+foreseeable future**. Running Levianaut on Windows through WSL2 is expected
+to work, but is not something the project currently tests.
+
+Prebuilt binaries are published for Linux on `x86_64` and `aarch64`. Other
+Unix-like platforms should for now build from source.
+
 ## Development
 
 Levianaut requires Rust 1.97 or later.
