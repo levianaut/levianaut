@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2026 Piotr Szpetkowski and contributors
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+mod logging;
+
 use std::net::SocketAddr;
 
 use clap::{Parser, Subcommand};
@@ -23,6 +25,8 @@ enum Commands {
 
 pub async fn run() -> anyhow::Result<()> {
     let args = Cli::parse();
+    logging::init();
+
     match args.command {
         Commands::Server { addr } => levianaut_server::run(addr).await?,
     }

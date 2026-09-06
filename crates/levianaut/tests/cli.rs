@@ -63,8 +63,8 @@ fn server_reports_unusable_address_with_its_cause() {
 
     assert!(!output.status.success());
     let stderr = std::str::from_utf8(&output.stderr).expect("stderr should be UTF-8");
-    assert!(stderr.contains(&format!("levianaut: could not listen on {addr}")));
-    assert!(stderr.contains("caused by:"));
+    assert!(stderr.contains(&format!("Error: could not listen on {addr}")));
+    assert!(stderr.contains("Caused by:"));
 }
 
 #[test]

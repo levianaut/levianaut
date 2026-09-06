@@ -13,6 +13,8 @@ license.workspace = true
 axum.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal"] }
+tower-http = { workspace = true, features = ["trace"] }
+tracing.workspace = true
 
 [dev-dependencies]
 tower = { workspace = true, features = ["util"] }

@@ -37,6 +37,12 @@ To use a different address, pass it with `--addr`:
 cargo run -p levianaut -- server --addr 127.0.0.1:18096
 ```
 
+Levianaut logs to stdout at the `info` level.
+Set `RUST_LOG` to change what is logged:
+```sh
+RUST_LOG=warn cargo run -p levianaut -- server
+```
+
 The server exposes a health check at `/health` which responds with HTTP `200 OK`:
 ```sh
 curl -i http://127.0.0.1:8096/health

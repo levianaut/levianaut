@@ -6,6 +6,7 @@ mod health;
 
 use axum::Router;
 use std::net::SocketAddr;
+use tower_http::trace::TraceLayer;
 
 use error::{Error, Result};
 
@@ -14,17 +15,23 @@ pub fn router() -> Router {
 }
 
 pub async fn run(address: SocketAddr) -> Result<()> {
-    let app = router();
+    let app = router().layer(TraceLayer::new_for_http());
     let listener = tokio::net::TcpListener::bind(address)
         .await
         .map_err(|source| Error::Bind { address, source })?;
     let shutdown = shutdown_signal()?;
 
-    println!("Levianaut is running at http://{address}");
+    // `address` may ask for port 0, in which case the OS picks the real port.
+    let address = listener.local_addr().unwrap_or(address);
+
+    tracing::info!("Levianaut is running at http://{address}");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown)
         .await
-        .map_err(Error::Serve)
+        .map_err(Error::Serve)?;
+
+    tracing::info!("Levianaut has shut down");
+    Ok(())
 }
 
 #[cfg(unix)]
@@ -41,9 +48,11 @@ fn shutdown_signal() -> Result<impl Future<Output = ()>> {
     })?;
 
     Ok(async move {
-        tokio::select! {
-            _ = interrupt.recv() => {}
-            _ = terminate.recv() => {}
-        }
+        let signal = tokio::select! {
+            _ = interrupt.recv() => "SIGINT",
+            _ = terminate.recv() => "SIGTERM",
+        };
+
+        tracing::info!("received {signal}, waiting for open connections to finish");
     })
 }
