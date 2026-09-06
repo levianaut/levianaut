@@ -17,9 +17,6 @@ pub enum Error {
         signal: &'static str,
         source: std::io::Error,
     },
-
-    #[error("the server stopped unexpectedly")]
-    Serve(#[source] std::io::Error),
 }
 
 /// A [`Result`](std::result::Result) with the server's [`Error`] type.

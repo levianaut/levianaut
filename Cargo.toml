@@ -20,7 +20,12 @@ license = "AGPL-3.0-or-later"
 levianaut-server = { path = "crates/levianaut-server" }
 
 anyhow = "1"
-axum = "0.8"
+# Pin unreleased header-read timeout and connection-limit support
+# until an Axum release includes them.
+axum = {
+    git = "https://github.com/tokio-rs/axum",
+    rev = "8b30afbfeee457146d29c9c9db47f0ae621a22a8",
+}
 clap = "4"
 thiserror = "2"
 tokio = "1"

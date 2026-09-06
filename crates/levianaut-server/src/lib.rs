@@ -5,6 +5,7 @@ mod error;
 mod health;
 
 use axum::Router;
+use axum::serve::ListenerExt;
 use std::net::SocketAddr;
 use tower_http::trace::TraceLayer;
 
@@ -25,10 +26,9 @@ pub async fn run(address: SocketAddr) -> Result<()> {
     let address = listener.local_addr().unwrap_or(address);
 
     tracing::info!("Levianaut is running at http://{address}");
-    axum::serve(listener, app)
+    axum::serve(listener.limit_connections(512), app)
         .with_graceful_shutdown(shutdown)
-        .await
-        .map_err(Error::Serve)?;
+        .await;
 
     tracing::info!("Levianaut has shut down");
     Ok(())
